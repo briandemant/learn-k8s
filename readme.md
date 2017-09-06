@@ -17,9 +17,10 @@ All examples are meant to run on minikube
 
 ## Examples
 
-* [./blob/master/01_kubectl](Basic kubernetes)
+* [Basic kubernetes](./blob/master/01_kubectl)
+* [Basic kubernetes](01_kubectl)
 
 ## Other documents
 
-* [./blob/master/resources.md](Links to resouces used to create this repo) 
-* [./blob/master/cheatsheet.md](Docker/Kubectl/Minikube cheatsheet) 
+* [Links to resouces used to create this repo](./blob/master/resources.md) 
+* [Docker/Kubectl/Minikube cheatsheet](cheatsheet.md) 
