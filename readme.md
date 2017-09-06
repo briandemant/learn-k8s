@@ -15,6 +15,10 @@ Basic knowledge of Linux, Docker is required
 
 All examples are meant to run on minikube
 
+## Examples
+
+* [01_kubectl](Basic kubernetes)
+
 ## Other documents
 
 * [resources.md](Links to resouces used to create this repo) 
