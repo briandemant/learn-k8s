@@ -17,7 +17,7 @@ All examples are meant to run on minikube
 
 ## Examples
  
-* [Basic kubernetes](01_kubectl)
+1. [Basic kubernetes](01_kubectl)
 
 ## Other documents
 
