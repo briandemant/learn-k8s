@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ex-02
+data:
+  # Adding new entries here will make them appear as files in the deployment.
+  # Please update k8s.io/k8s.io/README.md when you update this file
+  index.html: |
+        <!doctype html>
+        <html lang='en'>
+        <head>
+        <meta charset='UTF-8'>
+                     <meta name='viewport' content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+                                 <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+                     <title>ConfigMap FTW</title>
+        </head>
+        <body>
+           Hello this file is made from a <b>ConfigMap</b>!
+        </body>
+        </html>
