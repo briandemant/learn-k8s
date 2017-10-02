@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: nginx-configmap
   labels:
-    example: ex-02-file
+    example: ex-02
 spec:
   type: NodePort
   #type: LoadBalancer

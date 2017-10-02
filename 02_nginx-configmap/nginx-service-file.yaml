@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-configmap
+  name: nginx-configmap-file
   labels:
     example: ex-02-file
 spec:
@@ -10,4 +10,4 @@ spec:
   ports:
   - port: 80
   selector:
-    example: ex-02
+    example: ex-02-file
