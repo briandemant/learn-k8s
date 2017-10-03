@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: healthcheck-both
+  labels:
+    example: ex-03-both
+spec:
+  replicas: 2
+  selector:
+    example: ex-03-both
+  template:
+    metadata:
+      labels:
+        example: ex-03-both
+    spec:
+      containers:
+      - name:  healthcheck-both
+        image: mhart/alpine-node:8
+        command: ["node"]
+        args: ["index.js"]
+
+        env:
+          - name: CHECK
+            value: "Readiness AND Liveness"
+
+        ports:
+        - containerPort: 3000
+
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+            httpHeaders:
+            - name: X-Check-Header
+              value: Readyness
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+            httpHeaders:
+            - name: X-Check-Header
+              value: Liveness
+          initialDelaySeconds: 15
+          periodSeconds: 5
+
+        volumeMounts:
+          - name: ex-03-both
+            mountPath: /index.js
+            subPath: demo-server.js
+      volumes:
+        - name: ex-03-both
+          configMap:
+            name: shared
