@@ -5,16 +5,23 @@
 
 |endpoint|delay|status|description|
 |--------|-----|------|-----------|
-|        |  X  | 418  | -initial status- |
-|/sleep  |  X  | 418  | sleep for x seconds then ok  |
-|/wake   |     | 418  | ok          |
-|/sick   |     | 500  | sick          |
+|        |  X  | 404  | -initial status- |
+|/sleep  |  X  | 406  | sleep for x seconds then ok  |
+|/wake   |     | 200  | ok          |
+|/sick   |     | 418  | sick          |
 |/medicin|  X  | 399  | better for x seconds then ok |
-|/kill   |  X  | 503  | dying for x seconds then gone  |
-|(any)   |     | -    | report current state (and code) |
+|/distract|    | 504  | never `ends` but times out after 2 min  |
+|/slow   |  X  | 200  | waits `delay` before responding  |
+|/kill   |  X  | 503  | kill server (cutting any open connections)  |
+|/stop   |  X  | 200  | stops the server gracefully  |
+|/healthz|     | -    | report current state (and status code) |
+|(any)   |     | 404  | not found |
 
 all the deplayed ones takes a query parameter `delay` which is 
-the delay in seconds the default is 10 seconds
+the delay in seconds the default is 15 seconds, minimum is 1
+
+all endponts takes a query parameter `q` which will make it respond 
+with only the msg part of the json
 
 so `http://127.0.0.1:3000/sleep?delay=120` would sleep for 2 minutes.
 
