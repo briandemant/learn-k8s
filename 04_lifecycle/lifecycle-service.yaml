@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lifecycle
+  labels:
+    example: ex-04
+spec:
+  type: NodePort
+  #type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    example: ex-04

@@ -4,6 +4,8 @@
 
 A nodejs server which can be used to demonstrate various states and failures.
 
+### http endpoints
+
 |Endpoint     |Delay|Status|Description
 |-------------|:-----:|:------:|-----------
 |             |  X  | 404  | -initial status- 
@@ -29,3 +31,8 @@ so `http://127.0.0.1:3000/sleep?delay=120` would sleep for 2 minutes.
 Any state changing endpoint cancels the previous one.
 
 NOTE: it starts in the sleepy state for 10 seconds
+
+### signals
+
+Listen for all common signals. Those ment to stop it will make it stop 
+.. the rest will just output a message

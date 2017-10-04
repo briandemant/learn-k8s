@@ -205,3 +205,27 @@ server.listen(port, (err) => {
 	console.log(`Server is listening on ${port}`)
 	delayedState({query: {delay: 10}}, "sleepy", "ok")
 })
+
+// kill -1 [pid]
+// 1     2     3       15
+'SIGHUP SIGINT SIGQUIT SIGTERM' // SIGSTOP - 19
+	.split(/ /)
+	.forEach((signal) => {
+		console.log(`listening for ${signal}`)
+
+		process.on(signal, () => {
+			console.log(`Received ${signal} and quitting.`)
+			process.exit()
+		})
+	})
+
+// 10    12      14      18
+'SIGUSR1 SIGUSR2 SIGALRM SIGCONT'
+	.split(/ /)
+	.forEach((signal) => {
+		console.log(`listening for ${signal}`)
+
+		process.on(signal, () => {
+			console.log(`Received ${signal} but keep running.`)
+		})
+	})
