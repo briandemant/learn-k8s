@@ -30,7 +30,7 @@ const codes = {
 function getDelay(url) {
 	let time = Math.max(url.query.delay | 0, 0)
 	if (time == 0) {
-		time = 15
+		time = 10
 	}
 	return 1000 * time
 }
@@ -97,14 +97,13 @@ const requestHandler = (request, response) => {
 			"started": started,
 		},
 		"data": {},
-		"request": {
-			"url": request.url,
-			"httpVersion": request.httpVersion,
-			"method": request.method,
-			"headers": request.headers,
-		},
 		"debug": {
-			"started": started,
+			"request": {
+				"url": request.url,
+				"httpVersion": request.httpVersion,
+				"method": request.method,
+				"headers": request.headers,
+			},
 			"env": process.env,
 
 			"host": {
@@ -156,8 +155,9 @@ const requestHandler = (request, response) => {
 				console.log("The server has been stopped")
 			})
 		})
-	} else if (url.pathname == "/healthz") {
+	} else if (url.pathname == "/healthz" || url.pathname == "/") {
 		const checkType = request.headers['x-check-header']
+		data.data = healthchecks
 		if (checkType == "Liveness") {
 			healthchecks.liveness++
 
@@ -175,7 +175,11 @@ const requestHandler = (request, response) => {
 			console.log(healthchecks.latest)
 			healthchecks.log.push(healthchecks.latest)
 		}
-		data.data = healthchecks
+
+		if (healthchecks.log.length == 0) {
+			data.data = {}
+		}
+
 		msg = `I'm feeling ${state}!`
 
 	} else {
